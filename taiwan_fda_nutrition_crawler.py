@@ -27,10 +27,10 @@ class NutritionCrawler():
         (
         "https://consumer.fda.gov.tw/Food/detail/TFNDD.aspx?f=0&pid=%s"
         )
-        self.pid_range = []
+        self.pid_range = range(150, 161)
         self.required_nutrition = ['熱量', '水分', '粗蛋白', '粗脂肪'
                                ,'總碳水化合物']
-        self.required_entries = ['每單位重(0.0克)含量x1']
+        self.required_entry = '每單位重'
 
     def get_one_pid_df(self, pid):
         """
@@ -48,15 +48,15 @@ class NutritionCrawler():
         html = requests.get(self.url_template % pid).content
         soup = BeautifulSoup(html, 'lxml')
 
-        name = soup.find('span', id='lbFoodName')
-        trivial = soup.find('span', id='lbTrivialName')
+        name = soup.find('span', id='lbFoodName').text
+        trivial = soup.find('span', id='lbTrivialName').text
 
         table = soup.find('table', id='GridView1')
         if table is None:
             raise NoneItemException
 
-        df = pd.read_html(str(table), header=0, index_col=1)
-        df = df.loc[self.required_nutrition][self.required_entries].T.reset_index(drop=True)
+        df = pd.read_html(str(table), header=0, index_col=1)[0]
+        df = df.loc[self.required_nutrition].filter(regex=self.required_entry).T.reset_index(drop=True)
         df.loc[:, 'name'] = name
         df.loc[:, 'trivial'] = trivial
 
@@ -76,7 +76,6 @@ class NutritionCrawler():
             except NoneItemException:
                 continue
 
-        df_list = [self.get_one_pid_df(str(i)) for i in self.pid_range]
-        result = pd.concat(df_list)
+        result = pd.concat(df_list).reset_index(drop=True)
 
         return result
