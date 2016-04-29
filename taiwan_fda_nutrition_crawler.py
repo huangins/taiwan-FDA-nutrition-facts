@@ -28,17 +28,18 @@ class NutritionCrawler():
         (
         "https://consumer.fda.gov.tw/Food/detail/TFNDD.aspx?f=0&pid=%s"
         )
-        self.pid_range = range(3000)
+        self.pid_range = range(0,2100)
         self.required_nutrition = ['熱量', '水分', '粗蛋白', '粗脂肪'
                                ,'總碳水化合物']
         self.required_entry = '每單位重'
         self.translate = {
             '熱量': 'calories',
-            '粗蛋白': 'protien',
+            '粗蛋白': 'protein',
             '水分': 'water',
             '粗脂肪': 'fat',
             '總碳水化合物': 'carbs'
         }
+        self.expected_shape = (1, len(self.required_nutrition) +2)
 
         self.json_file = 'nutrition.json'
 
@@ -64,6 +65,7 @@ class NutritionCrawler():
         table = soup.find('table', id='GridView1')
         if table is None:
             raise NoneItemException
+            return
 
         df = pd.read_html(str(table), header=0, index_col=1, encoding='utf8')[0]
         df = df.loc[self.required_nutrition].filter(regex=self.required_entry).T.reset_index(drop=True)
@@ -85,13 +87,15 @@ class NutritionCrawler():
                 print(i)
                 try:
                     # stop time
-                    time.sleep(1)
-
-                    df_list.append(self.get_one_pid_df(str(i)))
+                    time.sleep(1.5)
+                    tmp = self.get_one_pid_df(str(i))
+                    if tmp.shape == self.expected_shape:
+                        df_list.append(self.get_one_pid_df(str(i)))
                 except NoneItemException:
                     continue
 
         finally:
+            self.result_list = df_list
             result = pd.concat(df_list).reset_index(drop=True)
             result.loc[:,'all_name'] = result['name'] + ',' + result['trivial']
             result = result.rename(columns=self.translate)
@@ -103,5 +107,5 @@ class NutritionCrawler():
         df = self.get_entrie_df()
 
         with open(self.json_file, 'w') as f:
-            f.write(df.to_json(force_ascii=False, orient='records'))
+            f.write(df.to_json(force_ascii=False, orient='index'))
 
