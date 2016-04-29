@@ -3,4 +3,5 @@ VENV/
 *.ipynb
 __pycache__/
 nutrition.json
+node_modules/
 
