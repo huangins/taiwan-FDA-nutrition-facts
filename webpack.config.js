@@ -15,6 +15,14 @@ devConfig = {
 			{
 				test: /\.scss$/,
 				loader: 'style!css!sass'
+			},
+			{
+				test: /\.json$/,
+				loader: 'json'
+			},
+			{
+				test: /\.txt$/,
+				loader: 'raw'
 			}
 		]
 	},

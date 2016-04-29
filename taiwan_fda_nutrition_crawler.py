@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
+import json
 
 
 """
@@ -42,6 +43,7 @@ class NutritionCrawler():
         self.expected_shape = (1, len(self.required_nutrition) +2)
 
         self.json_file = 'nutrition.json'
+        self.search_content_file = 'search_content.txt'
 
     def get_one_pid_df(self, pid):
         """
@@ -108,4 +110,18 @@ class NutritionCrawler():
 
         with open(self.json_file, 'w') as f:
             f.write(df.to_json(force_ascii=False, orient='index'))
+
+
+    def json_to_search_content(self):
+        with open(self.json_file) as f:
+            data = json.loads(f.read())
+
+        result = []
+        for key, value in data.items():
+            result.append('"' + key + '_' + value['all_name'] + '"')
+
+        result = ''.join(result)
+
+        with open(self.search_content_file, 'w') as f:
+            f.write(result)
 

@@ -24,7 +24,7 @@ class SingleResult extends React.Component{
         if(expanded){
             return(
                 <div>
-                    <Name text={result.name} />
+                    <Name text={result.name} onClick={expand} />
                     <DetailCard />
                 </div>
             )

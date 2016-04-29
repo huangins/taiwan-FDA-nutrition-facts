@@ -1,11 +1,12 @@
 import React, {ProtoTypes} from 'react'
 
-Name = ({text}) => (
-    <span>{text}</span>
+Name = ({text, onClick}) => (
+    <span onClick={onClick}>{text}</span>
 )
 
 Name.prototypes = {
-    text: ProtoTypes.string.idRequired
+    text: ProtoTypes.string.idRequired,
+    onClick: ProtoTypes.func.isRequired
 }
 
 export default Name

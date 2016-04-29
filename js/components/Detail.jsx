@@ -6,7 +6,7 @@ DetailCard = ({result}) => {
         <div>
             <h3>{'名稱： '}{result.name}</h3>
             <h3>{'俗名： '}{result.trivial}</h3>
-            
+
             <Table>
                 <tbody>
                     <tr>
@@ -46,3 +46,5 @@ DetailCard.prototypes = {
         trivial: ProtoTypes.string.isRequired
     }).isRequired
 }
+
+export default DetailCard
