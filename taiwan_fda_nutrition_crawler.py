@@ -28,10 +28,17 @@ class NutritionCrawler():
         (
         "https://consumer.fda.gov.tw/Food/detail/TFNDD.aspx?f=0&pid=%s"
         )
-        self.pid_range = range(0, 3500)
+        self.pid_range = range(3000)
         self.required_nutrition = ['熱量', '水分', '粗蛋白', '粗脂肪'
                                ,'總碳水化合物']
         self.required_entry = '每單位重'
+        self.translate = {
+            '熱量': 'calories',
+            '粗蛋白': 'protien',
+            '水分': 'water',
+            '粗脂肪': 'fat',
+            '總碳水化合物': 'carbs'
+        }
 
         self.json_file = 'nutrition.json'
 
@@ -73,25 +80,28 @@ class NutritionCrawler():
         """
 
         df_list = []
-        for i in self.pid_range:
-            print(i)
-            try:
-                df_list.append(self.get_one_pid_df(str(i)))
+        try:
+            for i in self.pid_range:
+                print(i)
+                try:
+                    # stop time
+                    time.sleep(1)
 
-                # stop time
-                time.sleep(1)
+                    df_list.append(self.get_one_pid_df(str(i)))
+                except NoneItemException:
+                    continue
 
-            except NoneItemException:
-                continue
+        finally:
+            result = pd.concat(df_list).reset_index(drop=True)
+            result.loc[:,'all_name'] = result['name'] + ',' + result['trivial']
+            result = result.rename(columns=self.translate)
 
-        result = pd.concat(df_list).reset_index(drop=True)
-
-        return result
+            return result
 
 
     def save_to_json_file(self):
         df = self.get_entrie_df()
 
         with open(self.json_file, 'w') as f:
-            f.write(df.to_json(force_ascii=False))
+            f.write(df.to_json(force_ascii=False, orient='records'))
 
