@@ -1,4 +1,4 @@
-import React, {ProtoTypes} from 'react'
+import React, {PropTypes} from 'react'
 import { Row } from 'react-bootstrap'
 import Name from './Name'
 import DetailCard from './DetailCard'
@@ -7,7 +7,7 @@ class SingleResult extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            expanded: False
+            expanded: false
         }
         this.expand = this.expand.bind(this)
     }
@@ -15,31 +15,31 @@ class SingleResult extends React.Component{
     expand(){
         this.setState(
             {
-                expanded: !expanded
+                expanded: !this.state.expanded
             }
         )
     }
 
     render(){
-        if(expanded){
+        if(this.state.expanded){
             return(
                 <div>
-                    <Name text={result.name} onClick={expand} />
-                    <DetailCard />
+                    <Name text={this.props.result.name} onClick={this.expand} />
+                    <DetailCard result={this.props.result} />
                 </div>
             )
         }
         return(
             <div>
-                <Name />
+                <Name text={this.props.result.name} onClick={this.expand} />
             </div>
         )
 
     }
 }
 
-SingleResult.prototypes = {
-    result: ProtoTypes.string.isRequired
+SingleResult.proptypes = {
+    result: PropTypes.object.isRequired
 }
 
 export default SingleResult

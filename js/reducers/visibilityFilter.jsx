@@ -1,6 +1,6 @@
 import {Map, List} from 'immutable'
 
-initState = Map({
+const initState = Map({
     keyword: '',
     categories: List([])
 })
