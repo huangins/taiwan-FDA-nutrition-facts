@@ -118,7 +118,7 @@ class NutritionCrawler():
 
         result = []
         for key, value in data.items():
-            result.append('"' + key + '_' + value['all_name'] + '"')
+            result.append('<' + key + '_' + value['all_name'] + '>')
 
         result = ''.join(result)
 
