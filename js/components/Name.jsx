@@ -1,12 +1,13 @@
-import React, {ProtoTypes} from 'react'
+import React, {PropTypes} from 'react'
 
-Name = ({text, onClick}) => (
+const Name = ({text, onClick}) => (
     <span onClick={onClick}>{text}</span>
 )
 
-Name.prototypes = {
-    text: ProtoTypes.string.idRequired,
-    onClick: ProtoTypes.func.isRequired
+Name.proptypes = {
+    text: PropTypes.string.idRequired,
+    //onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func
 }
 
 export default Name
