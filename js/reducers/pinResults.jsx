@@ -2,10 +2,11 @@ import {List} from 'immutable'
 
 const results = (state=List([]), action) => {
     switch (action.type) {
-        case 'ADD_PIN':
+        case 'TOGGLE_PIN':
+            if(state.include(action.id)){
+                return state.filter(ele => ele.get('id') !== action.id)
+            }
             return state.push(action.id)
-        case 'DELETE_PIN':
-            return state.filter(ele => ele.get('id') !== action.id)
         default:
             return state
     }

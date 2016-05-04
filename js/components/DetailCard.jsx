@@ -4,11 +4,16 @@ import { Table } from 'react-bootstrap'
 const DetailCard = ({result}) => {
     return (
         <div>
-            <h3>{'名稱： '}{result.name}</h3>
-            <h3>{'俗名： '}{result.trivial}</h3>
+            <h4>{'名稱： '}{result.name}</h4>
+            <h4>{'俗名： '}{result.trivial}</h4>
+            <h4>{'類型： '}{result.category}</h4>
 
             <Table>
                 <tbody>
+                    <tr>
+                        <td>一份重(g)</td>
+                        <td>{result.piece_weight}</td>
+                    </tr>
                     <tr>
                         <td>熱量(kcal)</td>
                         <td>{result.calories}</td>

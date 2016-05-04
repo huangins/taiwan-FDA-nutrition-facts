@@ -1,9 +1,9 @@
 import visibilityFilter from './visibilityFilter'
-import results from './results'
+import pinResults from './pinResults'
 import {combineReducers} from 'redux'
 
 const nutritionFactsApp = combineReducers({
-    results,
+    pinResults,
     visibilityFilter
 })
 

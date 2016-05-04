@@ -1,15 +1,13 @@
 import React, {PropTypes} from 'react'
-import ImmutablePropTypes from 'react-immutable-proptypes'
 import SingleResult from './SingleResult'
 
-const ResultList = ({results, add_pin, delete_pin}) => (
+const ResultList = ({results, toggle_pin}) => (
     <div>
         {results.map(result =>
                 <SingleResult
                     key={result.id}
                     result={result}
-                    add_pin={() => add_pin(result.index)}
-                    delete_pin = {() => delete_pin(result.index)}
+                    toggle_pin={() => toggle_pin(result.id)}
                 />
             )
         }
@@ -18,8 +16,7 @@ const ResultList = ({results, add_pin, delete_pin}) => (
 
 ResultList.proptypes = {
     results: PropTypes.array.isRequired,
-    add_pin: PropTypes.func.isRequired,
-    delete_pin: PropTypes.func.isRequired
+    toggle_pin: PropTypes.func.isRequired,
 }
 
 export default ResultList

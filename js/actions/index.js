@@ -12,16 +12,9 @@ export const editCatogory = (categories) => (
     }
 )
 
-export const addPin = (id) => (
+export const togglePin = (id) => (
     {
-        type: 'ADD_PIN',
-        id
-    }
-)
-
-export const deletePin = (id) => (
-    {
-        type: 'DELETE_PIN',
+        type: 'TOGGLE_PIN',
         id
     }
 )

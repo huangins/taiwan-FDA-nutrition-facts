@@ -29,7 +29,7 @@ class NutritionCrawler():
         (
         "https://consumer.fda.gov.tw/Food/detail/TFNDD.aspx?f=0&pid=%s"
         )
-        self.pid_range = range(0,2100)
+        self.pid_range = range(0, 2100)
         self.required_nutrition = ['修正熱量', '水分', '粗蛋白', '粗脂肪'
                                ,'總碳水化合物']
         self.required_entry = '每單位重'
@@ -40,7 +40,7 @@ class NutritionCrawler():
             '粗脂肪': 'fat',
             '總碳水化合物': 'carbs'
         }
-        self.expected_shape = (1, len(self.required_nutrition) +2)
+        self.expected_shape = (1, len(self.required_nutrition) +4)
 
         self.json_file = 'nutrition.json'
         self.search_content_file = 'search_content.txt'

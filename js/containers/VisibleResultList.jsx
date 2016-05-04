@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import ResultList from '../components/ResultList'
-import { addPin, deletePin } from '../actions'
+import { togglePin } from '../actions'
 const data = require('../../test_nutrition')
 const search_content = require('raw!../../search_content.txt')
 
@@ -25,34 +24,37 @@ const getIdFromKeyword = (keyword) => {
     return result
 }
 
-const getVisibleResults = (keyword) => {
+const getVisibleResults = (keyword, categories) => {
     // keyword is a string
     let result = []
 
     let result_list = getIdFromKeyword(keyword)
     result_list.forEach((ele) => {
+        // add id in the object(result)
         let d = data[ele]
         d.id = Number(ele)
         result.push(d)
     })
+    if(categories.size>0){
+        console.log(categories)
+        result = result.filter(ele => (categories.indexOf(ele.category)!= -1))
+    }
+
 
     return result
 }
 
 const mapStateToProps = (state, ownProps) => (
     {
-        results: getVisibleResults(state.visibilityFilter.get('keyword'))
+        results: getVisibleResults(state.visibilityFilter.get('keyword'), state.visibilityFilter.get('categories'))
     }
 )
 
 const mapDispatchToProps = (dispatch) => (
     {
-        add_pin: (id) => {
-            dispatch(addPin(id))
+        toggle_pin: (id) => {
+            dispatch(togglePin(id))
         },
-        delet_pin: (id) => {
-            dispatch(deletePin(id))
-        }
     }
 )
 
