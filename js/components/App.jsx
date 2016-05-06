@@ -3,9 +3,11 @@ import KeywordFilter from '../containers/KeywordFilter'
 import CategoryFilter from '../containers/CategoryFilter'
 import VisibleResultList from '../containers/VisibleResultList'
 import PinList from '../containers/PinList'
+import PinComputationList from '../containers/PinComputationList'
 
 const App = () => (
 	<div>
+		<PinComputationList />
 		<CategoryFilter />
 		<KeywordFilter />
 		<PinList />
