@@ -105,6 +105,7 @@ class NutritionCrawler():
             result = pd.concat(df_list).reset_index(drop=True)
             result.loc[:,'all_name'] = result['name'] + ',' + result['trivial']
             result = result.rename(columns=self.translate)
+            result.loc[:,'id'] = result.index.values
 
             return result
 

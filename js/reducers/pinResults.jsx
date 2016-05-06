@@ -1,6 +1,16 @@
-import {List} from 'immutable'
+import { fromJS } from 'immutable'
+let data = require('../../test_nutrition_records')
 
-const results = (state=List([]), action) => {
+// add pinned status
+data = data.map(ele => {
+        ele.pinned = false
+        return ele
+})
+
+let initState = fromJS(data)
+
+const results = (state, action) => {
+    state = initState
     switch (action.type) {
         case 'TOGGLE_PIN':
             if(state.include(action.id)){

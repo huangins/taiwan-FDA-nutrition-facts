@@ -24,14 +24,14 @@ class SingleResult extends React.Component{
         if(this.state.expanded){
             return(
                 <div>
-                    <Name text={this.props.result.name} onClick={this.expand} />
+                    <Name text={this.props.result.get('name')} onClick={this.expand} />
                     <DetailCard result={this.props.result} />
                 </div>
             )
         }
         return(
             <div>
-                <Name text={this.props.result.name} onClick={this.expand} />
+                <Name text={this.props.result.get('name')} onClick={this.expand} />
             </div>
         )
 

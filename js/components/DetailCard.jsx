@@ -4,35 +4,35 @@ import { Table } from 'react-bootstrap'
 const DetailCard = ({result}) => {
     return (
         <div>
-            <h4>{'名稱： '}{result.name}</h4>
-            <h4>{'俗名： '}{result.trivial}</h4>
-            <h4>{'類型： '}{result.category}</h4>
+            <h4>{'名稱： '}{result.get('name')}</h4>
+            <h4>{'俗名： '}{result.get('trivial')}</h4>
+            <h4>{'類型： '}{result.get('category')}</h4>
 
             <Table>
                 <tbody>
                     <tr>
                         <td>一份重(g)</td>
-                        <td>{result.piece_weight}</td>
+                        <td>{result.get('piece_weight')}</td>
                     </tr>
                     <tr>
                         <td>熱量(kcal)</td>
-                        <td>{result.calories}</td>
+                        <td>{result.get('calories')}</td>
                     </tr>
                     <tr>
                         <td>水分(g)</td>
-                        <td>{result.water}</td>
+                        <td>{result.get('water')}</td>
                     </tr>
                     <tr>
                         <td>粗蛋白(g)</td>
-                        <td>{result.protein}</td>
+                        <td>{result.get('protein')}</td>
                     </tr>
                     <tr>
                         <td>粗脂肪(g)</td>
-                        <td>{result.fat}</td>
+                        <td>{result.get('fat')}</td>
                     </tr>
                     <tr>
                         <td>總碳水化合物(g)</td>
-                        <td>{result.carbs}</td>
+                        <td>{result.get('carbs')}</td>
                     </tr>
                 </tbody>
             </Table>
