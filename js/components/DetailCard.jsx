@@ -1,41 +1,36 @@
 import React, {PropTypes} from 'react'
-import { Table } from 'react-bootstrap'
+import { Tabs, Tab } from 'react-bootstrap'
+import CardTable from './CardTable'
 
 const DetailCard = ({result}) => {
+
+    let re = /^unit_(.+)$/
+    let unit_result = result.filter((v, k) => k.indexOf('unit') > -1)
+    unit_result = unit_result.mapKeys(k => re.exec(k)[1])
+    unit_result = unit_result.set('weight', result.get('piece_weight'))
+
+    re = /^100g_(.+)$/
+    let hundred_g_result = result.filter((v, k) => k.indexOf('100g') > -1)
+    hundred_g_result = hundred_g_result.mapKeys(k => re.exec(k)[1])
+    hundred_g_result = hundred_g_result.set('weight', '100')
+
     return (
         <div>
             <h4>{'名稱： '}{result.get('name')}</h4>
             <h4>{'俗名： '}{result.get('trivial')}</h4>
             <h4>{'類型： '}{result.get('category')}</h4>
 
-            <Table>
-                <tbody>
-                    <tr>
-                        <td>一份重(g)</td>
-                        <td>{result.get('piece_weight')}</td>
-                    </tr>
-                    <tr>
-                        <td>熱量(kcal)</td>
-                        <td>{result.get('calories')}</td>
-                    </tr>
-                    <tr>
-                        <td>水分(g)</td>
-                        <td>{result.get('water')}</td>
-                    </tr>
-                    <tr>
-                        <td>粗蛋白(g)</td>
-                        <td>{result.get('protein')}</td>
-                    </tr>
-                    <tr>
-                        <td>粗脂肪(g)</td>
-                        <td>{result.get('fat')}</td>
-                    </tr>
-                    <tr>
-                        <td>總碳水化合物(g)</td>
-                        <td>{result.get('carbs')}</td>
-                    </tr>
-                </tbody>
-            </Table>
+
+
+
+            <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+                <Tab eventKey={1} title="每份">
+                    <CardTable result={unit_result} />
+                </Tab>
+                <Tab eventKey={2} title="每100g">
+                    <CardTable result={hundred_g_result} />
+                </Tab>
+            </Tabs>
         </div>
     )
 }
