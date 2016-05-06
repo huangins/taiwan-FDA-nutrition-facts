@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import { Table} from 'react-bootstrap'
-
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 const CardTable = ({result}) => (
     <Table hover striped responsive condensed>
@@ -33,16 +33,14 @@ const CardTable = ({result}) => (
     </Table>
 )
 
-CardTable.proptypes = {
-    result: PropTypes.objectOf({
-        calories: PropTypes.string.isRequired,
-        water: PropTypes.string.isRequired,
-        protein: PropTypes.string.isRequired,
-        fat: PropTypes.string.isRequired,
-        carbs: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        trivial: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired
+CardTable.propTypes = {
+    result: ImmutablePropTypes.mapContains({
+        weight: PropTypes.node.isRequired,
+        calories: PropTypes.node.isRequired,
+        water: PropTypes.node.isRequired,
+        protein: PropTypes.node.isRequired,
+        fat: PropTypes.node.isRequired,
+        carbs: PropTypes.node.isRequired
     }).isRequired
 }
 

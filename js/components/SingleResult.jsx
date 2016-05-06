@@ -47,7 +47,7 @@ class SingleResult extends React.Component{
     }
 }
 
-SingleResult.proptypes = {
+SingleResult.propTypes = {
     result: PropTypes.object.isRequired,
     toggle_pin: PropTypes.func.isRequired
 }

@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import { List } from 'immutable'
 import SingleResult from './SingleResult'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 const ResultList = ({results, toggle_pin}) => {
 
@@ -19,8 +20,8 @@ const ResultList = ({results, toggle_pin}) => {
 }
 
 
-ResultList.proptypes = {
-    results: PropTypes.array.isRequired,
+ResultList.propTypes = {
+    results: ImmutablePropTypes.list.isRequired,
     toggle_pin: PropTypes.func.isRequired,
 }
 

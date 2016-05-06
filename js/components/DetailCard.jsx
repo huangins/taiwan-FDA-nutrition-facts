@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import CardTable from './CardTable'
 
 const DetailCard = ({result}) => {
@@ -32,13 +33,18 @@ const DetailCard = ({result}) => {
     )
 }
 
-DetailCard.proptypes = {
-    result: PropTypes.objectOf({
-        calories: PropTypes.string.isRequired,
-        water: PropTypes.string.isRequired,
-        protein: PropTypes.string.isRequired,
-        fat: PropTypes.string.isRequired,
-        carbs: PropTypes.string.isRequired,
+DetailCard.propTypes = {
+    result: ImmutablePropTypes.mapContains({
+        unit_calories: PropTypes.node.isRequired,
+        unit_water: PropTypes.node.isRequired,
+        unit_protein: PropTypes.node.isRequired,
+        unit_fat: PropTypes.node.isRequired,
+        unit_carbs: PropTypes.node.isRequired,
+        '100g_calories': PropTypes.node.isRequired,
+        '100g_water': PropTypes.node.isRequired,
+        '100g_protein': PropTypes.node.isRequired,
+        '100g_fat': PropTypes.node.isRequired,
+        '100g_carbs': PropTypes.node.isRequired,
         name: PropTypes.string.isRequired,
         trivial: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired

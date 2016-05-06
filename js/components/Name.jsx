@@ -4,10 +4,9 @@ const Name = ({text, onClick}) => (
     <span onClick={onClick}>{text}</span>
 )
 
-Name.proptypes = {
-    text: PropTypes.string.idRequired,
-    //onClick: PropTypes.func.isRequired
-    onClick: PropTypes.func
+Name.propTypes = {
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
 }
 
 export default Name
