@@ -113,7 +113,7 @@ class NutritionCrawler():
         df = self.get_entrie_df()
 
         with open(self.json_file, 'w') as f:
-            f.write(df.to_json(force_ascii=False, orient='index'))
+            f.write(df.to_json(force_ascii=False, orient='records'))
 
 
     def json_to_search_content(self):
