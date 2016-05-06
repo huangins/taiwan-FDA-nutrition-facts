@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
-import json
 
 
 """
@@ -29,18 +28,23 @@ class NutritionCrawler():
         (
         "https://consumer.fda.gov.tw/Food/detail/TFNDD.aspx?f=0&pid=%s"
         )
-        self.pid_range = range(0, 2100)
+        self.pid_range = range(0,2100)
         self.required_nutrition = ['修正熱量', '水分', '粗蛋白', '粗脂肪'
                                ,'總碳水化合物']
-        self.required_entry = '每單位重'
+        self.required_entry = ['每單位重', '每100克含量']
         self.translate = {
-            '修正熱量': 'calories',
-            '粗蛋白': 'protein',
-            '水分': 'water',
-            '粗脂肪': 'fat',
-            '總碳水化合物': 'carbs'
+            '每單位重_修正熱量': 'unit_calories',
+            '每單位重_粗蛋白': 'unit_protein',
+            '每單位重_水分': 'unit_water',
+            '每單位重_粗脂肪': 'unit_fat',
+            '每單位重_總碳水化合物': 'unit_carbs',
+            '每100克含量_修正熱量': '100g_calories',
+            '每100克含量_粗蛋白': '100g_protein',
+            '每100克含量_水分': '100g_water',
+            '每100克含量_粗脂肪': '100g_fat',
+            '每100克含量_總碳水化合物': '100g_carbs',
         }
-        self.expected_shape = (1, len(self.required_nutrition) +4)
+        self.expected_shape = (1, len(self.required_nutrition)*2 +4)
 
         self.json_file = 'nutrition.json'
         self.search_content_file = 'search_content.txt'
@@ -73,7 +77,15 @@ class NutritionCrawler():
 
 
         df = pd.read_html(str(table), header=0, index_col=1, encoding='utf8')[0]
-        df = df.loc[self.required_nutrition].filter(regex=self.required_entry).T.reset_index(drop=True)
+
+        df_list = []
+        for i in self.required_entry:
+            tmp = df.loc[self.required_nutrition].filter(regex=i).T.reset_index(drop=True).iloc[0].to_frame().transpose()
+            tmp = tmp.rename(columns = lambda x: i + '_' + x)
+            df_list.append(tmp)
+
+        df = pd.concat(df_list, axis=1)
+
         df.loc[:, 'name'] = name
         df.loc[:, 'trivial'] = trivial
         df.loc[:, 'category'] = category
@@ -82,14 +94,16 @@ class NutritionCrawler():
         return df
 
 
-    def get_entrie_df(self):
+    def get_entrie_df(self, range_=None):
         """
 
         """
 
+        if range_ is None:
+            range_ = self.pid_range
         df_list = []
         try:
-            for i in self.pid_range:
+            for i in range_:
                 print(i)
                 try:
                     # stop time
@@ -116,17 +130,4 @@ class NutritionCrawler():
         with open(self.json_file, 'w') as f:
             f.write(df.to_json(force_ascii=False, orient='records'))
 
-
-    def json_to_search_content(self):
-        with open(self.json_file) as f:
-            data = json.loads(f.read())
-
-        result = []
-        for key, value in data.items():
-            result.append('<' + key + '_' + value['all_name'] + '>')
-
-        result = ''.join(result)
-
-        with open(self.search_content_file, 'w') as f:
-            f.write(result)
 
