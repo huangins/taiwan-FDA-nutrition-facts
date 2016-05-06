@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { List } from 'immutable'
 import ResultList from '../components/ResultList'
 import { togglePin } from '../actions'
 
@@ -8,7 +9,7 @@ const getVisibleResults = (results, keyword, categories) => {
     // keyword is a string
 
     if(!keyword.trim()){
-        return []
+        return List([])
     }
 
     let result = results.filter(ele => (ele.get('all_name').indexOf(keyword) > -1))
@@ -31,7 +32,7 @@ const mapDispatchToProps = (dispatch) => (
     {
         toggle_pin: (id) => {
             dispatch(togglePin(id))
-        },
+        }
     }
 )
 

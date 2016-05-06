@@ -9,17 +9,26 @@ data = data.map(ele => {
 
 let initState = fromJS(data)
 
-const results = (state, action) => {
-    state = initState
+const pinResult = (state, action) => {
     switch (action.type) {
         case 'TOGGLE_PIN':
-            if(state.include(action.id)){
-                return state.filter(ele => ele.get('id') !== action.id)
+            if(state.get('id') !== action.id){
+                return state
             }
-            return state.push(action.id)
+            return state.set('pinned', !state.get('pinned'))
+        default:
+            return state
+
+    }
+}
+
+const pinResults = (state = initState, action) => {
+    switch (action.type) {
+        case 'TOGGLE_PIN':
+            return state.map(ele => pinResult(ele, action))
         default:
             return state
     }
 }
 
-export default results
+export default pinResults

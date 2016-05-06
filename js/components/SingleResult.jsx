@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import { Row } from 'react-bootstrap'
 import Name from './Name'
 import DetailCard from './DetailCard'
+import TogglePin from './TogglePin'
 
 class SingleResult extends React.Component{
     constructor(props){
@@ -20,18 +21,26 @@ class SingleResult extends React.Component{
         )
     }
 
+
+
     render(){
         if(this.state.expanded){
             return(
                 <div>
-                    <Name text={this.props.result.get('name')} onClick={this.expand} />
+                    <Row>
+                        <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
+                        <Name text={this.props.result.get('name')} onClick={this.expand} />
+                    </Row>
                     <DetailCard result={this.props.result} />
                 </div>
             )
         }
         return(
             <div>
-                <Name text={this.props.result.get('name')} onClick={this.expand} />
+                <Row>
+                    <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
+                    <Name text={this.props.result.get('name')} onClick={this.expand} />
+                </Row>
             </div>
         )
 
@@ -39,7 +48,8 @@ class SingleResult extends React.Component{
 }
 
 SingleResult.proptypes = {
-    result: PropTypes.object.isRequired
+    result: PropTypes.object.isRequired,
+    toggle_pin: PropTypes.func.isRequired
 }
 
 export default SingleResult

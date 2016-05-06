@@ -1,13 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ResultList from '../components/ResultList'
-import { addPin, deletePin } from '../actions'
-const data = require('../../test_nutrition')
+import { togglePin } from '../actions'
+
 
 const getPinResults = (immutable_list) => {
-    let result = immutable_list.map(x => data[x.toString()])
-
-    return result
+    return immutable_list.filter(ele => ele.get('pinned') == true)
 }
 
 const mapStateToProps = (state, ownProps) => (
@@ -18,11 +16,8 @@ const mapStateToProps = (state, ownProps) => (
 
 const mapDispatchToProps = (dispatch) => (
     {
-        add_pin: (id) => {
-            dispatch(addPin(id))
-        },
-        delet_pin: (id) => {
-            dispatch(deletePin(id))
+        toggle_pin: (id) => {
+            dispatch(togglePin(id))
         }
     }
 )

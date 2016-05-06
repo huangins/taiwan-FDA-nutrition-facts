@@ -8,6 +8,7 @@ const App = () => (
 	<div>
 		<CategoryFilter />
 		<KeywordFilter />
+		<PinList />
 		<VisibleResultList />
 	</div>
 )

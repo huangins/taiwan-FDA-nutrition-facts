@@ -1,10 +1,8 @@
 import React, {PropTypes} from 'react'
+import { List } from 'immutable'
 import SingleResult from './SingleResult'
 
 const ResultList = ({results, toggle_pin}) => {
-    if (results==[]){
-        return
-    }
 
     return (
         <div>
