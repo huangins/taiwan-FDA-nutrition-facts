@@ -12,16 +12,13 @@ const DetailCard = ({result}) => {
     re = /^100g_(.+)$/
     let hundred_g_result = result.filter((v, k) => k.indexOf('100g') > -1)
     hundred_g_result = hundred_g_result.mapKeys(k => re.exec(k)[1])
-    hundred_g_result = hundred_g_result.set('weight', '100')
+    hundred_g_result = hundred_g_result.set('weight', '100.0')
 
     return (
         <div>
             <h4>{'名稱： '}{result.get('name')}</h4>
             <h4>{'俗名： '}{result.get('trivial')}</h4>
             <h4>{'類型： '}{result.get('category')}</h4>
-
-
-
 
             <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                 <Tab eventKey={1} title="每份">
