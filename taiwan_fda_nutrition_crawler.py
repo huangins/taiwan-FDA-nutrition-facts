@@ -124,8 +124,8 @@ class NutritionCrawler():
             return result
 
 
-    def save_to_json_file(self):
-        df = self.get_entrie_df()
+    def save_to_json_file(self, range_=None):
+        df = self.get_entrie_df(range_)
 
         with open(self.json_file, 'w') as f:
             f.write(df.to_json(force_ascii=False, orient='records'))
