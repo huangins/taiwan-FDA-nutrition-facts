@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { togglePin } from '../actions'
-import PinComputationWindow from '../components/PinComputationWindow'
+import PinDashboard from '../components/PinDashboard'
 
 
 const getPinResults = (immutable_list) => {
@@ -19,9 +19,9 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-const PinComputationList = connect(
+const PinDashboardList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(PinComputationWindow)
+)(PinDashboard)
 
-export default PinComputationList
+export default PinDashboardList

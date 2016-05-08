@@ -1,0 +1,25 @@
+.pin-dashborad{
+	border: 2px solid #d7d7dc;
+
+	& > div{
+		padding: 0;
+	}
+
+	.sum-number{
+		width: 100%;
+		height: 100px;
+		padding: 5px 20px;
+		background: #ffffff;
+		border: 2px solid #d7d7dc;
+
+		.title{
+			font-size: 10x;
+		}
+
+		.number{
+			font-size: 40px;
+			text-align: center;
+		}
+	}
+}
+
