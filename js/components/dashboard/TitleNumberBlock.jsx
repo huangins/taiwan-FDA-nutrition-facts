@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
 
 const TitleNumberBlock = ({title, sum_number, unit}) => (
-	<div className="sum-number">
+	<div className="sum-number block">
 		<p className="title">{title}</p>
 		<p className="number">{sum_number}{' '}{unit}</p>
 	</div>

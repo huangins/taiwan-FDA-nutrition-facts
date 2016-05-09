@@ -11,29 +11,37 @@ const get_sum_from_array_object = (key, array) => {
 	return Math.round(sum*100)/100
 }
 
-const = get_category_count_data = (array) => {
+const get_category_count_data = (array) => {
 	let barData = {
 		name: '種類'
 	}
 
-	array = array.reduce((pV, cV, cI) => {
+	// make category map(an object)
+	let category_map = array.reduce((pV, cV, cI) => {
 		if(pV[cV.get('category')] === undefined){
 			pV[cV.get('category')] = 1
 		}else{
-			pV[cV.get('category')] = 
+			pV[cV.get('category')] = pV[cV.get('category')]+1
 		}
-		
+		return pV
 	}, {})
-	array = []
+
+	let values = []
+	for(let i in category_map){
+		values.push({x: i, y: category_map[i]})
+	}
+
+	barData['values'] = values
+	return [barData]
 }
 
 const barData = [
 	{
 		name: '種類',
 		values: [
-			{x: '水果類', y:3},
+			{x: '水果類', y:1},
 			{x: '菇類', y:2},
-			{x: '肉類', y:5}
+			{x: '肉類', y:3}
 		]
 	}
 ]
@@ -48,27 +56,26 @@ const PinDashboard = ({results}) => {
 
     return(
     	<Row className="pin-dashborad">
-    		<Col md={12}>
+    		<Col md={12}  className="block">
     			<BarChart
-    				data={barData}
-    				width={500}
-    				height={300}
+    				data={get_category_count_data(results)}
+    				height={200}
     				title='種類'
     			/>
     		</Col>
-    		<Col md={12}>
+    		<Col sm={12}>
 	    		<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
     		</Col>
-    		<Col md={6}>
+    		<Col sm={6}>
     			<TitleNumberBlock title={'水分總和'} sum_number={sum_map['unit_water']} unit='g' />
     		</Col>
-    		<Col md={6}>
+    		<Col sm={6}>
     			<TitleNumberBlock title={'蛋白質總和'} sum_number={sum_map['unit_protein']} unit='g' />
     		</Col>
-    		<Col md={6}>
+    		<Col sm={6}>
     			<TitleNumberBlock title={'脂肪總和'} sum_number={sum_map['unit_fat']} unit='g' />
     		</Col>
-    		<Col md={6}>
+    		<Col sm={6}>
     			<TitleNumberBlock title={'碳水化合物總和'} sum_number={sum_map['unit_carbs']} unit='g' />
     		</Col>
     	</Row>

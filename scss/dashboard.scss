@@ -5,12 +5,15 @@
 		padding: 0;
 	}
 
+	.block{
+		border: 2px solid #d7d7dc;
+		padding: 5px 20px;
+	}
+
 	.sum-number{
 		width: 100%;
 		height: 100px;
-		padding: 5px 20px;
 		background: #ffffff;
-		border: 2px solid #d7d7dc;
 
 		.title{
 			font-size: 10x;
@@ -22,4 +25,3 @@
 		}
 	}
 }
-
