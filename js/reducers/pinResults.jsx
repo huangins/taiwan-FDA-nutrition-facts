@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable'
-let data = require('../../test_nutrition_records')
+let data = require('../../nutrition')
 
 // add pinned status
 data = data.map(ele => {
