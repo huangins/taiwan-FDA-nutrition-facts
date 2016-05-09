@@ -5,18 +5,23 @@ import ResultList from '../components/ResultList'
 import { togglePin } from '../actions'
 
 
-const getVisibleResults = (results, keyword, categories) => {
+const getVisibleResults = (results, state) => {
     // keyword is a string
 
-    if(!keyword.trim()){
+    if(!state.get('keyword').trim()){
         return List([])
     }
 
-    let result = results.filter(ele => (ele.get('all_name').indexOf(keyword) > -1))
+    let result = results.filter(ele => (ele.get('all_name').indexOf(state.get('keyword')) > -1))
 
-    if(categories.size>0){
-        result = result.filter(ele => (categories.indexOf(ele.get('category'))!= -1))
+    if(state.get('categories').size>0){
+        result = result.filter(ele => (state.get('categories').indexOf(ele.get('category'))!= -1))
     }
+
+    if(state.get('filter_no_unit')){
+        result = result.filter(ele => (ele.get('piece_weight') !== 0))
+    }
+
 
 
     return result
@@ -24,7 +29,7 @@ const getVisibleResults = (results, keyword, categories) => {
 
 const mapStateToProps = (state, ownProps) => (
     {
-        results: getVisibleResults(state.pinResults, state.visibilityFilter.get('keyword'), state.visibilityFilter.get('categories'))
+        results: getVisibleResults(state.pinResults, state.visibilityFilter)
     }
 )
 

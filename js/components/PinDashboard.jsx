@@ -1,8 +1,10 @@
 import React, {PropTypes} from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import { Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import { BarChart } from 'rd3'
 import TitleNumberBlock from './dashboard/TitleNumberBlock'
+import PieChartDistribution from './dashboard/PieChartDistribution'
+
 
 const entity_list = ['unit_calories', 'unit_carbs', 'unit_fat', 'unit_protein', 'unit_water']
 const get_sum_from_array_object = (key, array) => {
@@ -55,30 +57,44 @@ const PinDashboard = ({results}) => {
 
 
     return(
-    	<Row className="pin-dashborad">
-    		<Col md={12}  className="block">
-    			<BarChart
-    				data={get_category_count_data(results)}
-    				height={200}
-    				title='種類'
-    			/>
-    		</Col>
-    		<Col sm={12}>
-	    		<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
-    		</Col>
-    		<Col sm={6}>
-    			<TitleNumberBlock title={'水分總和'} sum_number={sum_map['unit_water']} unit='g' />
-    		</Col>
-    		<Col sm={6}>
-    			<TitleNumberBlock title={'蛋白質總和'} sum_number={sum_map['unit_protein']} unit='g' />
-    		</Col>
-    		<Col sm={6}>
-    			<TitleNumberBlock title={'脂肪總和'} sum_number={sum_map['unit_fat']} unit='g' />
-    		</Col>
-    		<Col sm={6}>
-    			<TitleNumberBlock title={'碳水化合物總和'} sum_number={sum_map['unit_carbs']} unit='g' />
-    		</Col>
-    	</Row>
+    	<div className="pin-dashborad">
+			<Row>
+				<Col md={6} className="block">
+					<PieChartDistribution
+						title="蛋白質分布"
+						array={results}
+						entity="unit_protein"
+					 />
+				</Col>
+				<Col md={6}  className="block">
+	    			<BarChart
+	    				data={get_category_count_data(results)}
+	    				height={300}
+	    				title='種類'
+						yAxisTickCount={2}
+	    			/>
+	    		</Col>
+			</Row>
+			<Row>
+				<Col md={12} className="block">
+					<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
+				</Col>
+			</Row>
+			<Row>
+	    		<Col md={3} className="block">
+	    			<TitleNumberBlock title={'蛋白質總和'} sum_number={sum_map['unit_protein']} unit='g' />
+	    		</Col>
+				<Col md={3} className="block">
+	    			<TitleNumberBlock title={'脂肪總和'} sum_number={sum_map['unit_fat']} unit='g' />
+	    		</Col>
+	    		<Col md={3} className="block">
+	    			<TitleNumberBlock title={'碳水化合物總和'} sum_number={sum_map['unit_carbs']} unit='g' />
+	    		</Col>
+				<Col md={3} className="block">
+	    			<TitleNumberBlock title={'水分總和'} sum_number={sum_map['unit_water']} unit='g' />
+	    		</Col>
+			</Row>
+    	</div>
 	)
 }
 

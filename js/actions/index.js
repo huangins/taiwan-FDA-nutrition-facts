@@ -18,3 +18,9 @@ export const togglePin = (id) => (
         id
     }
 )
+
+export const filterNoUnit = () => (
+    {
+        type: 'FILTER_NO_UNIT'
+    }
+)

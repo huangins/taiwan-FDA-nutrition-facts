@@ -2,6 +2,7 @@ import {Map, List} from 'immutable'
 
 const initState = Map({
     keyword: '',
+    filter_no_unit: true,
     categories: List([])
 })
 
@@ -12,6 +13,8 @@ const visibilityFilter = (state = initState, action) => {
 
         case 'EDIT_CATEGORY':
             return state.set('categories', List(action.categories))
+        case 'FILTER_NO_UNIT':
+            return state.set('filter_no_unit', !state.get('filter_no_unit'))
         default:
             return state
 
