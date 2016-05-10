@@ -59,14 +59,14 @@ const PinDashboard = ({results}) => {
     return(
     	<div className="pin-dashborad">
 			<Row>
-				<Col md={5} className="block">
+				<Col sm={5} className="block">
 					<PieChartDistribution
 						title="蛋白質分布"
 						array={results}
 						entity="unit_protein"
 					 />
 				</Col>
-				<Col md={7}  className="block">
+				<Col sm={7}  className="block">
 	    			<BarChart
 	    				data={get_category_count_data(results)}
 	    				height={150}
@@ -76,21 +76,21 @@ const PinDashboard = ({results}) => {
 	    		</Col>
 			</Row>
 			<Row>
-				<Col md={6} className="block">
+				<Col sm={6} className="block">
 					<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
 				</Col>
-				<Col md={6}>
+				<Col sm={6}>
 					<Row>
-			    		<Col md={6} className="block">
+			    		<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'蛋白質總和'} sum_number={sum_map['unit_protein']} unit='g' />
 			    		</Col>
-						<Col md={6} className="block">
+						<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'脂肪總和'} sum_number={sum_map['unit_fat']} unit='g' />
 			    		</Col>
-			    		<Col md={6} className="block">
+			    		<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'碳水化合物總和'} sum_number={sum_map['unit_carbs']} unit='g' />
 			    		</Col>
-						<Col md={6} className="block">
+						<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'水分總和'} sum_number={sum_map['unit_water']} unit='g' />
 			    		</Col>
 					</Row>

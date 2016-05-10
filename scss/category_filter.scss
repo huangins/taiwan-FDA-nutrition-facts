@@ -1,4 +1,14 @@
 #category-filter{
+    &>label{
+        font-size: 2em;
+        color: rgba(74, 149, 162, 0.72);
+    }
+
+    &>label:hover{
+        color: rgb(35, 69, 75);
+        transition: color 0.2s ease-in;
+    }
+
     margin: 20px 0;
 
     input:checked + span{
@@ -19,6 +29,7 @@
         }
 
         span{
+            color: rgb(80, 79, 78);
             font-size: 1.2em;
         }
     }
