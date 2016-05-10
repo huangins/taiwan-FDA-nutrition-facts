@@ -9,12 +9,12 @@ import { Row, Col } from 'react-bootstrap'
 const App = () => (
 	<div>
 		<Row>
-			<Col md={10} mdOffset={1} xs={10} xsOffset={1} >
+			<Col xs={10} xsOffset={1}>
 				<PinDashboardList />
 			</Col>
 		</Row>
 		<Row>
-			<Col md={5} mdOffset={1}>
+			<Col xs={10} xsOffset={1}>
 				<CategoryFilter />
 				<KeywordFilter />
 				<PinList />

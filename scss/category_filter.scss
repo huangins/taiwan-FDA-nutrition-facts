@@ -1,0 +1,25 @@
+#category-filter{
+    margin: 20px 0;
+
+    input:checked + span{
+        color: rgb(200, 80, 55);
+    }
+
+    label{
+        width: 100%;
+
+        div{
+            padding: 0 10px;
+
+        }
+
+        &>div:hover{
+            background: rgb(183, 200, 203);
+            transition: background 0.2s ease-in;
+        }
+
+        span{
+            font-size: 1.2em;
+        }
+    }
+}
