@@ -24,23 +24,25 @@ class SingleResult extends React.Component{
 
 
     render(){
+        const item = (
+            <Row>
+                <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
+                <Name text={this.props.result.get('name')} onClick={this.expand} />
+            </Row>
+        )
+
+
         if(this.state.expanded){
             return(
                 <div>
-                    <Row>
-                        <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
-                        <Name text={this.props.result.get('name')} onClick={this.expand} />
-                    </Row>
+                    {item}
                     <DetailCard result={this.props.result} />
                 </div>
             )
         }
         return(
             <div>
-                <Row>
-                    <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
-                    <Name text={this.props.result.get('name')} onClick={this.expand} />
-                </Row>
+                {item}
             </div>
         )
 

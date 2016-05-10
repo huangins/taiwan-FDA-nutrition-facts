@@ -16,7 +16,7 @@ const DetailCard = ({result}) => {
     hundred_g_result = hundred_g_result.set('weight', '100.0')
 
     return (
-        <div>
+        <div className="detail-card">
             <h4>{'名稱： '}{result.get('name')}</h4>
             <h4>{'俗名： '}{result.get('trivial')}</h4>
             <h4>{'類型： '}{result.get('category')}</h4>

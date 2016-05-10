@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 const ResultList = ({results, toggle_pin}) => {
 
     return (
-        <div>
+        <div id="results-list">
             {results.map(result =>
                     <SingleResult
                         key={result.get('id')}

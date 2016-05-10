@@ -59,14 +59,14 @@ const PinDashboard = ({results}) => {
     return(
     	<div className="pin-dashborad">
 			<Row>
-				<Col sm={5} className="block">
+				<Col md={5} className="block">
 					<PieChartDistribution
 						title="蛋白質分布"
 						array={results}
 						entity="unit_protein"
 					 />
 				</Col>
-				<Col sm={7}  className="block">
+				<Col md={7}  className="block">
 	    			<BarChart
 	    				data={get_category_count_data(results)}
 	    				height={150}
@@ -76,10 +76,10 @@ const PinDashboard = ({results}) => {
 	    		</Col>
 			</Row>
 			<Row>
-				<Col sm={6} className="block">
+				<Col md={6} className="block">
 					<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
 				</Col>
-				<Col sm={6}>
+				<Col md={6}>
 					<Row>
 			    		<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'蛋白質總和'} sum_number={sum_map['unit_protein']} unit='g' />

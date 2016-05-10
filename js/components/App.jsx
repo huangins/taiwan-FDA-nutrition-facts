@@ -17,8 +17,14 @@ const App = () => (
 			<Col xs={10} xsOffset={1}>
 				<KeywordFilter />
 				<CategoryFilter />
-				<PinList />
-				<VisibleResultList />
+				<Row>
+					<Col md={6}>
+						<VisibleResultList />
+					</Col>
+					<Col md={6}>
+						<PinList />
+					</Col>
+				</Row>
 			</Col>
 		</Row>
 	</div>

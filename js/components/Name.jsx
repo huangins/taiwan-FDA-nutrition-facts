@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
 
 const Name = ({text, onClick}) => (
-    <span onClick={onClick}>{text}</span>
+    <span className="name" onClick={onClick}>{text}</span>
 )
 
 Name.propTypes = {

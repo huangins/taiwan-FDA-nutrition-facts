@@ -68,14 +68,14 @@ class CategoryFilter extends React.Component {
         if(this.state.expanded){
             return(
                 <div id="category-filter">
-                    <label onClick={this.handle_expanded}>我只想要某些種類啦</label>
+                    <label onClick={this.handle_expanded} className="expanded">我...我...只想要看某些種類啦</label>
                     {checkbox}
                 </div>
             )
         }
         return(
             <div id="category-filter">
-                <label onClick={this.handle_expanded}>我只想要某些種類啦</label>
+                <label onClick={this.handle_expanded}>我...我...只想要看某些種類啦</label>
             </div>
         )
     }

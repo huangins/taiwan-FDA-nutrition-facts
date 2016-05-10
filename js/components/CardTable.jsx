@@ -3,7 +3,7 @@ import { Table} from 'react-bootstrap'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 const CardTable = ({result}) => (
-    <Table hover striped responsive condensed>
+    <Table hover responsive condensed>
         <tbody>
             <tr>
                 <td>重量(g)</td>
