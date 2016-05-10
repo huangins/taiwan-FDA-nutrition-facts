@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { List } from 'immutable'
 import ResultList from '../components/ResultList'
-import { togglePin } from '../actions'
+import { togglePin, increasePinnedAmount, decreasePinnedAmount } from '../actions'
 
 
 const getVisibleResults = (results, state) => {
@@ -37,6 +37,12 @@ const mapDispatchToProps = (dispatch) => (
     {
         toggle_pin: (id) => {
             dispatch(togglePin(id))
+        },
+        increase_pinned_amount: (id) => {
+            dispatch(increasePinnedAmount(id))
+        },
+        decrease_pinned_amount: (id) => {
+            dispatch(decreasePinnedAmount(id))
         }
     }
 )

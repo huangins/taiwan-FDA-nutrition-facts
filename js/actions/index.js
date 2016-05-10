@@ -24,3 +24,17 @@ export const filterNoUnit = () => (
         type: 'FILTER_NO_UNIT'
     }
 )
+
+export const increasePinnedAmount = (id) => (
+    {
+        type: 'INCREASE_PINNED_AMOUNT',
+        id
+    }
+)
+
+export const decreasePinnedAmount = (id) => (
+    {
+        type: 'DECREASE_PINNED_AMOUNT',
+        id
+    }
+)

@@ -9,8 +9,8 @@ import PieChartDistribution from './dashboard/PieChartDistribution'
 const entity_list = ['unit_calories', 'unit_carbs', 'unit_fat', 'unit_protein', 'unit_water']
 const get_sum_from_array_object = (key, array) => {
 	let sum = 0
-	array.forEach(ele => sum = sum+Number(ele.get(key)))
-	return Math.round(sum*100)/100
+	array.forEach(ele => sum = sum+ele.get('pinned_amount')*Number(ele.get(key)))
+	return Math.round(sum*10)/10
 }
 
 const get_category_count_data = (array) => {
