@@ -14,9 +14,9 @@ const PieChartDistribution = ({title, array, entity}) => {
     return(
         <PieChart
             data={data}
-            width={400}
-            height={300}
-            radius={80}
+            width={300}
+            height={150}
+            radius={30}
             innerRadius={10}
             sectorBorderColor="white"
             title={title}
