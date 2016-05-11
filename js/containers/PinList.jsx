@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ResultList from '../components/ResultList'
+import PinResultList from '../components/PinResultList'
 import { togglePin, increasePinnedAmount, decreasePinnedAmount } from '../actions'
 
 
@@ -31,6 +31,6 @@ const mapDispatchToProps = (dispatch) => (
 const PinList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ResultList)
+)(PinResultList)
 
 export default PinList

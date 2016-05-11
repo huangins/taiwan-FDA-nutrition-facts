@@ -37,12 +37,6 @@ const mapDispatchToProps = (dispatch) => (
     {
         toggle_pin: (id) => {
             dispatch(togglePin(id))
-        },
-        increase_pinned_amount: (id) => {
-            dispatch(increasePinnedAmount(id))
-        },
-        decrease_pinned_amount: (id) => {
-            dispatch(decreasePinnedAmount(id))
         }
     }
 )

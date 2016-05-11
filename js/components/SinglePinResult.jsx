@@ -25,9 +25,19 @@ class SingleResult extends React.Component{
 
     render(){
         const item = (
-            <div className="single-results">
-                <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
-                <Name text={this.props.result.get('name')} onClick={this.expand} />
+            <div className="single-pin-results">
+                <div>
+                    <TogglePin pinned={this.props.result.get('pinned')} onClick={this.props.toggle_pin} />
+                    <Name text={this.props.result.get('name')} onClick={this.expand} />
+                </div>
+                <div className="amount-button">
+                    <Button onClick={this.props.increase_pinned_amount}>+</Button>
+                    {this.props.result.get('pinned_amount')}
+                    {(this.props.result.get('pinned_amount')>1) ?
+                    <Button onClick={this.props.decrease_pinned_amount}>-</Button>
+                    : <Button onClick={this.props.decrease_pinned_amount } disabled>-</Button> }
+                </div>
+
             </div>
         )
 
@@ -50,7 +60,9 @@ class SingleResult extends React.Component{
 
 SingleResult.propTypes = {
     result: PropTypes.object.isRequired,
-    toggle_pin: PropTypes.func.isRequired
+    toggle_pin: PropTypes.func.isRequired,
+    increase_pinned_amount: PropTypes.func.isRequired,
+    decrease_pinned_amount: PropTypes.func.isRequired
 }
 
 export default SingleResult
