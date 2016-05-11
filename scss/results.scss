@@ -1,7 +1,8 @@
 #results-list{
     height: 300px;
-    overflow-y: scroll;;
+    overflow-y: scroll;
     .detail-card{
+        background: rgb(255, 255, 255);
         border: 2px solid #b8b0b0;
         border-radius: 10px;
         margin: 10px 0;
@@ -11,7 +12,7 @@
     .name{
         margin: 0 0 0 10px;
         font-size: 1.2em;
-        color: rgb(131, 128, 121);
+        color: rgb(62, 62, 62);
         letter-spacing: 1px;
     }
 

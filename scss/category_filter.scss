@@ -5,11 +5,12 @@
 
     &>label{
         font-size: 2em;
-        color: rgba(74, 149, 162, 0.72);
+        color: rgb(35, 69, 75);
+
     }
 
     &>label:hover{
-        color: rgb(35, 69, 75);
+        color: rgba(74, 149, 162, 0.72);
         transition: color 0.2s ease-in;
     }
 
