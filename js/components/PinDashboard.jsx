@@ -77,10 +77,13 @@ const PinDashboard = ({results}) => {
 			</Row>
 			<Row>
 				<Col md={6} className="block">
-					<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
+					
 				</Col>
 				<Col md={6}>
 					<Row>
+						<Col md={6} className="block">
+							<TitleNumberBlock title={'熱量總和'} sum_number={sum_map['unit_calories']} unit='kcal' />
+						</Col>
 			    		<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'蛋白質總和'} sum_number={sum_map['unit_protein']} unit='g' />
 			    		</Col>
@@ -89,9 +92,6 @@ const PinDashboard = ({results}) => {
 			    		</Col>
 			    		<Col sm={6} className="block">
 			    			<TitleNumberBlock title={'碳水化合物總和'} sum_number={sum_map['unit_carbs']} unit='g' />
-			    		</Col>
-						<Col sm={6} className="block">
-			    			<TitleNumberBlock title={'水分總和'} sum_number={sum_map['unit_water']} unit='g' />
 			    		</Col>
 					</Row>
 				</Col>
