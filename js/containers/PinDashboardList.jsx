@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { togglePin } from '../actions'
 import PinDashboard from '../components/PinDashboard'
 
 

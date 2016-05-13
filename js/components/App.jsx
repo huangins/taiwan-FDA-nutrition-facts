@@ -4,6 +4,7 @@ import CategoryFilter from '../containers/CategoryFilter'
 import VisibleResultList from '../containers/VisibleResultList'
 import PinList from '../containers/PinList'
 import PinDashboardList from '../containers/PinDashboardList'
+import TargetForm from '../containers/TargetForm'
 import { Row, Col, Tab, Nav, NavItem } from 'react-bootstrap'
 
 const App = () => (
@@ -30,6 +31,7 @@ const App = () => (
 
 							<KeywordFilter />
 							<CategoryFilter />
+							<TargetForm />
 							<Row>
 								<Col md={6}>
 									<VisibleResultList />
@@ -38,6 +40,7 @@ const App = () => (
 									<PinList />
 								</Col>
 							</Row>
+
 
 				</Tab.Pane>
 			</Tab.Content>

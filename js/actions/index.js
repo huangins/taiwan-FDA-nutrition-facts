@@ -38,3 +38,10 @@ export const decreasePinnedAmount = (id) => (
         id
     }
 )
+
+export const editTarget = (target) => (
+    {
+        type: 'EDIT_TARGET',
+        target
+    }
+)
